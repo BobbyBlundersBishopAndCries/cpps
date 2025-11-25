@@ -1,5 +1,5 @@
 #include "PhoneBook.hpp"
-#include <iomanip> // for setw
+#include <iomanip>
 
 PhoneBook::PhoneBook() : number(0), oldest(0) {}
 
@@ -78,32 +78,29 @@ void PhoneBook::SearchContact() const
 	          << std::setw(10) << "Last Name"  << "|"
 	          << std::setw(10) << "Nickname"   << std::endl;
 
-	for (int i = 0; i < number; i++)
+	int i = 0;
+	while(i < number)
 	{
 		std::cout << std::setw(10) << i << "|"
 		          << std::setw(10) << FormatField(contacts[i].getFirstname()) << "|"
 		          << std::setw(10) << FormatField(contacts[i].getLastname())  << "|"
 		          << std::setw(10) << FormatField(contacts[i].getNickname())   << std::endl;
+		i++;
 	}
-
 	std::cout << "Enter an index to display: ";
 	std::string input;
 	std::getline(std::cin, input);
-
 	if (input.length() != 1 || !isdigit(input[0]))
 	{
 		std::cout << "Invalid input." << std::endl;
 		return;
 	}
-
 	int index = input[0] - '0';
 	if (index < 0 || index >= number)
 	{
 		std::cout << "Index out of range." << std::endl;
 		return;
 	}
-
-	// Show full contact
 	std::cout << std::endl;
 	std::cout << "---- Contact Info ----" << std::endl;
 	std::cout << "First Name: "     << contacts[index].getFirstname()     << std::endl;
