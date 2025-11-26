@@ -5,43 +5,59 @@ PhoneBook::PhoneBook() : number(0), oldest(0) {}
 
 PhoneBook::~PhoneBook() {}
 
+static bool isValid(const std::string &s)
+{
+    if (s.empty())
+        return false;
+
+    for (std::string::size_type i = 0; i < s.length(); i++)
+    {
+        if (!std::isspace(s[i]))
+            return true;
+    }
+    return false;
+}
+
+
 void PhoneBook::AddContact()
 {
-	std::string input;
+    std::string input;
 
-	int index;
-	if (number < 8)
-		index = number;
-	else
-		index = oldest;
+    int index = (number < 8) ? number : oldest;
 
-	std::cout << "First Name: ";
-	std::getline(std::cin, input);
-	contacts[index].setFirstname(input);
+    std::cout << "First Name: ";
+    std::getline(std::cin, input);
+    if (!isValid(input)) { std::cout << "Invalid input.\n"; return; }
+    contacts[index].setFirstname(input);
 
-	std::cout << "Last Name: ";
-	std::getline(std::cin, input);
-	contacts[index].setLastname(input);
+    std::cout << "Last Name: ";
+    std::getline(std::cin, input);
+    if (!isValid(input)) { std::cout << "Invalid input.\n"; return; }
+    contacts[index].setLastname(input);
 
-	std::cout << "Nickname: ";
-	std::getline(std::cin, input);
-	contacts[index].setNickname(input);
+    std::cout << "Nickname: ";
+    std::getline(std::cin, input);
+    if (!isValid(input)) { std::cout << "Invalid input.\n"; return; }
+    contacts[index].setNickname(input);
 
-	std::cout << "Phone Number: ";
-	std::getline(std::cin, input);
-	contacts[index].setPhoneNumber(input);
+    std::cout << "Phone Number: ";
+    std::getline(std::cin, input);
+    if (!isValid(input)) { std::cout << "Invalid input.\n"; return; }
+    contacts[index].setPhoneNumber(input);
 
-	std::cout << "Darkest Secret: ";
-	std::getline(std::cin, input);
-	contacts[index].setDarkestSecret(input);
+    std::cout << "Darkest Secret: ";
+    std::getline(std::cin, input);
+    if (!isValid(input)) { std::cout << "Invalid input.\n"; return; }
+    contacts[index].setDarkestSecret(input);
 
-	std::cout << "Contact added successfully." << std::endl;
+    std::cout << "Contact added successfully.\n";
 
-	if (number < 8)
-		number++;
-	else
-		oldest = (oldest + 1) % 8;
+    if (number < 8)
+        number++;
+    else
+        oldest = (oldest + 1) % 8;
 }
+
 
 void PhoneBook::DisplayInfo(int index)
 {
