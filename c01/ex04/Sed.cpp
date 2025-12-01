@@ -13,25 +13,21 @@ void Sed::Replace()
 		std::cerr << "Error: s1 cannot be empty." << std::endl;
 		return;
 	}
-
 	std::ifstream infile(filename.c_str());
 	if (!infile) {
 		std::cerr << "Error: cannot open input file." << std::endl;
 		return;
 	}
-
 	std::ofstream outfile((filename + ".replace").c_str());
 	if (!outfile) {
 		std::cerr << "Error: cannot create output file." << std::endl;
 		return;
 	}
-
 	std::string line;
 	while (std::getline(infile, line)) {
 		std::string result;
 		size_t pos = 0;
 		size_t found;
-
 		while ((found = line.find(s1, pos)) != std::string::npos) {
 			result += line.substr(pos, found - pos);
 			result += s2;
