@@ -1,11 +1,24 @@
+#include <iostream>
+#include "Animal.hpp"
 #include "Dog.hpp"
 #include "Cat.hpp"
 
 int main()
 {
-const Animal* j = new Dog();
-const Animal* i = new Cat();
-delete j;//should not create a leak
-delete i;
-return 0;
+    Animal* meta = new Animal();
+    Animal* j = new Dog();
+    Animal* i = new Cat();
+
+    std::cout << j->getType() << std::endl;
+    std::cout << i->getType() << std::endl;
+
+    i->makeSound();
+    j->makeSound();
+    meta->makeSound();
+
+    delete meta;
+    delete j;
+    delete i;
+
+    return 0;
 }

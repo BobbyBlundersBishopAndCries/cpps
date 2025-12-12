@@ -56,10 +56,12 @@ void MateriaSource::learnMateria(AMateria* m)
     {
         if (templates[i] == NULL)
         {
-            templates[i] = m->clone();  // STORE A COPY
+            templates[i] = m->clone();
+            delete m;
             return;
         }
     }
+    delete m;
 }
 
 AMateria* MateriaSource::createMateria(std::string const & type)
@@ -69,7 +71,7 @@ AMateria* MateriaSource::createMateria(std::string const & type)
         if (templates[i] != NULL)
         {
             if (templates[i]->getType() == type)
-                return templates[i]->clone(); // RETURN A NEW COPY
+                return templates[i]->clone();
         }
     }
     return NULL;
