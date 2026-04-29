@@ -29,7 +29,8 @@ class Bureaucrat{
 		class GradeTooLowException : public std::exception {
 			public:
 				const char* what() const throw();
-		};		/* New function : signForm() */
+		};
+		/* New function : signForm() */
 		void	signForm(Form& f);
 };
 std::ostream& operator<<(std::ostream& out, const Bureaucrat& b);

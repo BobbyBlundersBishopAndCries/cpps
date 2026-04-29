@@ -4,7 +4,6 @@
 #include "ShrubberyCreationForm.hpp"
 #include <iostream>
 
-/* Helper functions to create forms */
 static AForm* createShrubbery(const std::string& target)
 {
 	return new ShruberryCreationForm(target);
@@ -24,7 +23,6 @@ typedef AForm* (*FormCreator)(const std::string&);
 
 AForm* Intern::makeForm(const std::string& formname, const std::string& target)
 {
-	/* Arrays mapping form names to creator functions */
 	std::string formNames[3] = {
 		"shrubbery creation",
 		"robotomy request",
@@ -36,7 +34,6 @@ AForm* Intern::makeForm(const std::string& formname, const std::string& target)
 		createPresidential
 	};
 
-	/* Loop through to find the matching form */
 	for (int i = 0; i < 3; i++)
 	{
 		if (formNames[i] == formname)
@@ -45,8 +42,6 @@ AForm* Intern::makeForm(const std::string& formname, const std::string& target)
 			return creators[i](target);
 		}
 	}
-
-	/* Form not found */
 	std::cout << "Error: form type \"" << formname << "\" does not exist" << std::endl;
 	return NULL;
 }
