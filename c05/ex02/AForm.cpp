@@ -7,10 +7,7 @@ AForm::AForm():_isSigned(false), _requiredSign(1), _requiredExec(1)
 	std::cout << "Default Aform constructor with default values\n";
 }
 
-AForm::~AForm()
-{
-	std::cout << "AForm to the dump\n";
-}
+AForm::~AForm(){}
 
 AForm::AForm(const AForm& f):_formName(f._formName),_isSigned(f._isSigned),
 		 _requiredSign(f._requiredSign), _requiredExec(f._requiredExec)
@@ -65,7 +62,7 @@ const char *AForm::FormNotSignedException::what()const throw()
 
 const char *AForm::GradeTooLowForExecException::what()const throw()
 {
-					return "Grade is too low to execute";
+	return "Grade is too low to execute";
 }
 
 void	AForm::beSigned(Bureaucrat& b)
@@ -77,7 +74,7 @@ void	AForm::beSigned(Bureaucrat& b)
 std::ostream& operator<<(std::ostream& out, const AForm& f)
 {
 	out << "AForm name: " << f.getFormName() 
-		<< ", is AForm signable ?: " << f.getisSigned()
+		<< ", is AForm signable ?: " << (f.getisSigned() ? "true" : "false")
 		<< ", AForm's required grade to sign: " << f.getrequiredSign()
 		<< ", AForm's required grade to execute: " << f.getrequiredExec() << std::endl;
 	return out;	

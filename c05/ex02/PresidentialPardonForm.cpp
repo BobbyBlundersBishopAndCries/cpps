@@ -5,10 +5,7 @@
 
 PresidentialPardonForm::PresidentialPardonForm():AForm("Presidential",25,5){}
 
-PresidentialPardonForm::~PresidentialPardonForm()
-{
-	std::cout << "Presidential destructor called\n";
-}
+PresidentialPardonForm::~PresidentialPardonForm(){}
 
 PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm& p)
 			:AForm::AForm(p),_target(p._target)

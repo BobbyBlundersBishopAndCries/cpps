@@ -14,13 +14,9 @@ int main()
 		std::cout << worst << std::endl;
 		std::cout << "to here\n";
 	}
-	catch (const Bureaucrat::GradeTooHighException& e)
+	catch (const std::exception& e)
 	{
-		std::cerr << "Bureaucrat high exception: " << e.what() << std::endl;
-	}
-	catch (const Bureaucrat::GradeTooLowException& e)
-	{
-		std::cerr << "Bureaucrat low exception: " << e.what() << std::endl;
+		std::cerr << "Bureaucrat exception: " << e.what() << std::endl;
 	}
 
 	std::cout << "\n--- Test2: Bureaucrat GradeTooHighException should be thrown from here: ---\n";
@@ -30,13 +26,9 @@ int main()
 		Bureaucrat highwannabe = invalid;
 		std::cout << "--- to here ---\n";
 	}
-	catch (const Bureaucrat::GradeTooHighException& e)
+	catch (const std::exception& e)
 	{
-		std::cerr << "Bureaucrat high exception: " << e.what() << std::endl;
-	}
-	catch (const Bureaucrat::GradeTooLowException& e)
-	{
-		std::cerr << "Bureaucrat low exception: " << e.what() << std::endl;
+		std::cerr << "Bureaucrat exception: " << e.what() << std::endl;
 	}
 
 	std::cout << "\n--- Test3: Bureaucrat GradeTooLowException should be thrown from here: ---\n";
@@ -46,13 +38,9 @@ int main()
 		Bureaucrat lowwannabe = invalid2;
 		std::cout << "--- to here ---\n";
 	}
-	catch (const Bureaucrat::GradeTooHighException& e)
+	catch (const std::exception& e)
 	{
-		std::cerr << "Bureaucrat high exception: " << e.what() << std::endl;
-	}
-	catch (const Bureaucrat::GradeTooLowException& e)
-	{
-		std::cerr << "Bureaucrat low exception: " << e.what() << std::endl;
+		std::cerr << "Bureaucrat exception: " << e.what() << std::endl;
 	}
 
 	std::cout << "\n--- Test4: Sign form successfully ---\n";
@@ -63,13 +51,9 @@ int main()
 		best.signForm(topofhierachy);
 		std::cout << "Form is signed: " << topofhierachy.getisSigned() << std::endl;
 	}
-	catch (const Form::GradeTooHighException& e)
+	catch (const std::exception& e)
 	{
-		std::cerr << "Form grade too high ex: " << e.what() << std::endl;
-	}
-	catch (const Form::GradeTooLowException& e)
-	{
-		std::cerr << "Form grade too low ex: " << e.what() << std::endl;
+		std::cerr << "Form exception: " << e.what() << std::endl;
 	}
 
 	std::cout << "\n--- Test5: Form GradeTooHighException should be thrown from here: ---\n";
@@ -78,13 +62,9 @@ int main()
 		Form toohigh("toohigh", 0, 0);
 		std::cout << "--- to here ---\n";
 	}
-	catch (const Form::GradeTooHighException& e)
+	catch (const std::exception& e)
 	{
-		std::cerr << "Form grade too high ex: " << e.what() << std::endl;
-	}
-	catch (const Form::GradeTooLowException& e)
-	{
-		std::cerr << "Form grade too low ex: " << e.what() << std::endl;
+		std::cerr << "Form exception: " << e.what() << std::endl;
 	}
 
 	std::cout << "\n--- Test6: Form GradeTooLowException should be thrown from here: ---\n";
@@ -93,15 +73,15 @@ int main()
 		Form toolow("toolow", 177, 17);
 		std::cout << "--- to here ---\n";
 	}
-	catch (const Form::GradeTooHighException& e)
+	catch (const std::exception& e)
 	{
-		std::cerr << "Form grade too high ex: " << e.what() << std::endl;
+		std::cerr << "Form exception: " << e.what() << std::endl;
 	}
-	catch (const Form::GradeTooLowException& e)
-	{
-		std::cerr << "Form grade too low ex: " << e.what() << std::endl;
-	}
-
-	std::cout << "\n===== ALL TESTS COMPLETED =====" << std::endl;
+	/* overloaded << operator */
+	std::cout << "\n--- Test7: overloaded << operator ---\n";
+	Bureaucrat best("Best", 1);
+	std::cout << best << std::endl;
+	Form topsecret("highest", 1, 1);
+	std::cout << topsecret << std::endl;
 	return 0;
 }

@@ -42,7 +42,7 @@ class AForm {
 			public:
 				const char *what() const throw();
 		};
-		/* beSigned */
+		/* ex02 functions */
 		void	beSigned(Bureaucrat& b);
 		virtual void	execute(Bureaucrat const & executor) const = 0;
 };

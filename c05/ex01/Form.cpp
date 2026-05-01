@@ -7,10 +7,7 @@ Form::Form():_isSigned(false), _requiredSign(1), _requiredExec(1)
 	std::cout << "Default constructor with default values\n";
 }
 
-Form::~Form()
-{
-	std::cout << "Form to the dump\n";
-}
+Form::~Form(){}
 
 Form::Form(const Form& f):_formName(f._formName),_isSigned(f._isSigned),
 		 _requiredSign(f._requiredSign), _requiredExec(f._requiredExec)
@@ -67,7 +64,7 @@ void	Form::beSigned(Bureaucrat& b)
 std::ostream& operator<<(std::ostream& out, const Form& f)
 {
 	out << "Form name: " << f.getFormName() 
-		<< ", is Form signable ?: " << f.getisSigned()
+		<< ", is Form signable ?: " << (f.getisSigned() ? "true" : "false")
 		<< ", Form's required grade to sign: " << f.getrequiredSign()
 		<< ", Form's required grade to execute: " << f.getrequiredExec() << std::endl;
 	return out;	

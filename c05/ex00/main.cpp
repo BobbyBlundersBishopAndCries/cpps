@@ -91,8 +91,5 @@ int main()
 	{
 		std::cerr << "Exception: " << e.what() << std::endl;
 	}
-	
-	std::cout << "\n===== TESTS COMPLETED =====" << std::endl;
-	
 	return 0;
 }
