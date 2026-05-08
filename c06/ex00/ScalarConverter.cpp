@@ -1,71 +1,88 @@
 #include "ScalarConverter.hpp"
-#include <climits>
-#include <cmath>
-#include <cstdlib>
 #include <iostream>
 #include <iomanip>
-static void displayChar(double value)
-{
-	if (std::isinf(value) || std::isnan(value) || value > 127 || value < -128)
-		std::cout << "char: impossible" << std::endl;
-	else
-	{
-		char c = static_cast<char>(value);
-		if( c < 32 || c > 126)
-			std::cout << "char: Non displayable" << std::endl;
-		else
-			std::cout << "char: '" << c << "'" << std::endl;
-	} 
-}
+#include <cstdlib>
+#include <cmath>
+#include <climits>
 
-static void displayInt(double value)
+void ScalarConverter::convert(const std::string& s) 
 {
-	if(std::isinf(value) || std::isnan(value) || value > INT_MAX || value < INT_MIN)
-		std::cout << "int: impossible" << std::endl;
-	else
-		std::cout << "int: " << static_cast<int>(value) << std::endl;
-}
+    char c = 0; 
+    int i = 0; 
+    float f = 0.0f; 
+    double d = 0.0;
+    bool impossible = false;
+    
+    char* end;
+    d = std::strtod(s.c_str(), &end);
+    std::string endStr(end);
 
-static void displayFloat(double value)
-{
-	float f = static_cast<float>(value);
-	if (std::isinf(f))
-		std::cout << "float: " << (f > 0? "+inff":"-inff") << std::endl;
-	else if (std::isnan(f))
-		std::cout << "float: nanf" << std::endl;
-	else
-	{
-		std::cout << "float: ";
-		if (f == static_cast<int>(f) && f >= -1e6 && f <= 1e6)
-			std::cout << std::fixed << std::setprecision(1);
-		std::cout << f << "f" << std::endl;
-		std::cout.unsetf(std::ios::fixed);
-	}
-}
+    if (s.length() == 1 && !std::isdigit(s[0])) 
+    {
+        c = s[0]; 
+        i = static_cast<int>(c); 
+        f = static_cast<float>(c); 
+        d = static_cast<double>(c);
+    } 
+    else if (endStr == "f") 
+    {
+        f = static_cast<float>(d); 
+        c = static_cast<char>(f); 
+        i = static_cast<int>(f); 
+        d = static_cast<double>(f);
+    } 
+    else if (endStr == "") 
+    {
+        if (s.find('.') != std::string::npos || d > INT_MAX || d < INT_MIN || std::isnan(d)) 
+        {
+            c = static_cast<char>(d); 
+            i = static_cast<int>(d); 
+            f = static_cast<float>(d);
+        } 
+        else 
+        {
+            i = static_cast<int>(d); 
+            c = static_cast<char>(i); 
+            f = static_cast<float>(i); 
+            d = static_cast<double>(i);
+        }
+    } 
+    else 
+        impossible = true;
 
-static void displayDouble(double value)
-{
-	if (std::isnan(value))
-		std::cout << "double: nan" << std::endl;
-	else if (std::isinf(value))
-		std::cout << "double: " << (value > 0 ? "+inf" : "-inf") << std::endl;
-	else
-	{
-		std::cout << "double: ";
-		if (value == static_cast<int>(value) && value >= -1e6 && value <= 1e6)
-			std::cout << std::fixed << std::setprecision(1);
-		std::cout << value << std::endl;
-		std::cout.unsetf(std::ios::fixed);
-	}
-}
+    if (impossible) 
+    {
+        std::cout << "char: impossible\nint: impossible\nfloat: impossible\ndouble: impossible\n";
+        return;
+    }
 
-void ScalarConverter::convert(const std::string& a)
-{
-	char* end;
-	double value = std::strtod(a.c_str(), &end);
-	
-	displayChar(value);
-	displayInt(value);
-	displayFloat(value);
-	displayDouble(value);
+    if (std::isnan(d) || std::isinf(d) || d < 0 || d > 127) 
+    {
+        std::cout << "char: impossible\n";
+    }
+    else if (!std::isprint(i)) 
+    {
+        std::cout << "char: Non displayable\n";
+    }
+    else 
+    {
+        std::cout << "char: '" << c << "'\n";
+    }
+    
+    if (std::isnan(d) || std::isinf(d) || d < INT_MIN || d > INT_MAX) 
+    {
+        std::cout << "int: impossible\n";
+    }
+    else 
+    {
+        std::cout << "int: " << i << "\n";
+    }
+    
+    if (d == std::floor(d) && !std::isinf(d) && !std::isnan(d)) 
+    {
+        std::cout << std::fixed << std::setprecision(1); 
+    }
+        
+    std::cout << "float: " << f << "f\n";
+    std::cout << "double: " << d << "\n";
 }
