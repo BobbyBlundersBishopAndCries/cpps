@@ -1,5 +1,4 @@
 #pragma once
-#include <algorithm>
 #include <exception>
 
 
@@ -15,7 +14,12 @@ class NotFoundException : public std::exception
 template <typename T>
 typename T::iterator easyfind(T& container, int value)
 {
-    typename T::iterator it = std::find(container.begin(), container.end(), value);
+    typename T::iterator it;
+    for(it = container.begin(); it != container.end(); ++it)
+    {
+        if(*it == value)
+            return it;
+    }
     if (it == container.end())
         throw NotFoundException();
     return it;
