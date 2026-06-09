@@ -9,15 +9,17 @@ int main()
     sp.addNumber(3);
     sp.addNumber(17);
     sp.addNumber(9);
-    sp.addNumber(11);    
+    sp.addNumber(11);
+    sp.print_vec(); 
     std::cout << sp.shortestSpan() << std::endl;
     std::cout << sp.longestSpan() << std::endl;
     std::cout << "\n--- Large Span Test ---" << std::endl;
-    Span largeSp(10000);
+    Span largeSp(100);
     std::vector<int> vec;
-    for (int i = 0; i < 10000; ++i)
+    for (int i = 0; i < 100; ++i)
         vec.push_back(i * 2);
     largeSp.addNumber(vec.begin(), vec.end());
+    largeSp.print_vec(); 
     std::cout << largeSp.shortestSpan() << std::endl;
     std::cout << largeSp.longestSpan() << std::endl;
     

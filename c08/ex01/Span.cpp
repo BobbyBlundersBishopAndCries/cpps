@@ -2,7 +2,7 @@
 #include <cmath>
 #include <limits>
 #include <algorithm>
-
+#include <iostream>
 Span::Span() : _n(0) {}
 
 Span::Span(unsigned int n) : _n(n) {}
@@ -50,4 +50,15 @@ int Span::longestSpan() const
     std::vector<int> sorted = _vec;
     std::sort(sorted.begin(), sorted.end());
     return sorted.back() - sorted.front();
+}
+
+void Span::print_vec()const
+{
+    for (size_t i = 0; i < this->_vec.size(); i++)
+    {
+        if(i != this->_vec.size() - 1)
+            std::cout << this->_vec[i] << " ";
+        else
+            std::cout << this->_vec[i] << std::endl;
+    }   
 }

@@ -25,6 +25,8 @@ class Span
         }
         int shortestSpan() const;
         int longestSpan() const;
+        void print_vec()const; // out of subject but I made this function to show example it only prints the vector's content
+        
         class FullSpanException : public std::exception
         {
             public:

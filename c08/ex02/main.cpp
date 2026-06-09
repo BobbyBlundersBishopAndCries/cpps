@@ -1,6 +1,12 @@
 #include "MutantStack.hpp"
 #include <iostream>
 #include <list>
+void print(MutantStack<int>::const_iterator cit_b, MutantStack<int>::const_iterator cit_e)
+{
+    for (; cit_b != cit_e; cit_b++)
+        std::cout << *cit_b << std::endl;
+}
+
 
 int main() {
     std::cout << "--- Subject Test with MutantStack ---" << std::endl;
@@ -14,16 +20,18 @@ int main() {
     mstack.push(5);
     mstack.push(737);
     mstack.push(0);
-    MutantStack<int>::iterator it = mstack.begin();
-    MutantStack<int>::iterator ite = mstack.end();
-    ++it;
-    --it;
-    while (it != ite)
+    MutantStack<int>::iterator it_b = mstack.begin();
+    MutantStack<int>::iterator it_e = mstack.end();
+    MutantStack<int>::const_iterator cit_e = mstack.end();
+    MutantStack<int>::const_iterator cit_b = mstack.begin();
+    ++it_b;
+    --it_b;
+    while (it_b != it_e)
     {
-        std::cout << *it << std::endl;
-        ++it;
+        *it_b = *it_b + 1;
+        ++it_b;
     }
-    std::stack<int> s(mstack);
+    print(cit_b, cit_e);
     std::cout << "\n--- Same Test with std::list ---" << std::endl;
     std::list<int> ls;
     ls.push_back(5);
