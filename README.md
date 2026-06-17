@@ -12,3 +12,6 @@ Full visualization :
 
 <img width="1300" height="1734" alt="image" src="https://github.com/user-attachments/assets/bcb4879b-0a0c-40b5-bd72-ba7f2f92ec6b" />
 
+step 3: Use Jacobsthal order to insert the pend Container:
+
+<img width="1869" height="1376" alt="image" src="https://github.com/user-attachments/assets/1576d079-4c86-44f2-8841-3303297db243" />
