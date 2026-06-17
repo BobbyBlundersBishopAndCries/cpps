@@ -1,10 +1,17 @@
 I'm gonna solve this example using the Ford-Jhonson algorthim : ./PmergeMe 8 3 1 4 7 18 2 28 24 5 9 15
+
 ### Ford-Jhonson algo :
+
 #### step 1: make pairs each with next making the big one first or second it doesn't matter:
+
 just be consistent on each pair incrementing by 2 
+    
     std::vector<std::pair<unsigned int, unsigned int>> pairs = {(8,3),(4,1),(18,7),(28,2),(24,5),(15,9)};
- or std::deque<std::pair<unsigned int, unsigned int>> pairs = {(8,3),(4,1),(18,7),(28,2),(24,5),(15,9)};
+
+or std::deque<std::pair<unsigned int, unsigned int>> pairs = {(8,3),(4,1),(18,7),(28,2),(24,5),(15,9)};
+
 #### step 2: Using merge sort, sort the pairs by first in this case to get this new version of pairs:
+
 pairs = {(4,1),(8,3),(15,9),(18,7),(24,5),(28,2)}
 
 <img width="1612" height="1221" alt="image" src="https://github.com/user-attachments/assets/e143935f-88e1-47d3-8fbd-b58fb2ef3fcd" />
